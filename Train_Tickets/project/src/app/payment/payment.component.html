@@ -1,0 +1,169 @@
+<div class="container">
+  <div class="payment-card" *ngIf="!showConfirmation && booking">
+    <button class="back-button" (click)="backToRouteSelection()">
+      ← Back to Route Selection
+    </button>
+
+    <h1>Payment Details</h1>
+    <p class="subtitle">Complete your booking securely</p>
+
+    <div class="booking-summary">
+      <h3>Trip Summary</h3>
+      <div class="summary-row">
+        <span>Route:</span>
+        <span class="summary-value">{{ booking.from }} → {{ booking.to }}</span>
+      </div>
+      <div class="summary-row">
+        <span>Date:</span>
+        <span class="summary-value">{{ booking.date }}</span>
+      </div>
+      <div class="summary-row">
+        <span>Passengers:</span>
+        <span class="summary-value">{{ booking.passengers }}</span>
+      </div>
+      <div class="summary-row">
+        <span>Class:</span>
+        <span class="summary-value">{{ booking.route | titlecase }}</span>
+      </div>
+      <div class="summary-row total">
+        <span>Total:</span>
+        <span class="summary-value">₡{{ booking.price.toFixed(2) }}</span>
+      </div>
+    </div>
+
+    <form class="payment-form">
+      <div class="form-group">
+        <label for="cardNumber">Card Number</label>
+        <input
+          type="text"
+          id="cardNumber"
+          [(ngModel)]="payment.cardNumber"
+          name="cardNumber"
+          placeholder="1234 5678 9012 3456"
+          maxlength="19"
+          (input)="formatCardNumber($event)"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="cardHolder">Cardholder Name</label>
+        <input
+          type="text"
+          id="cardHolder"
+          [(ngModel)]="payment.cardHolder"
+          name="cardHolder"
+          placeholder="John Doe"
+          required>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="expiryDate">Expiry Date</label>
+          <input
+            type="text"
+            id="expiryDate"
+            [(ngModel)]="payment.expiryDate"
+            name="expiryDate"
+            placeholder="MM/YY"
+            maxlength="5"
+            (input)="formatExpiryDate($event)"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label for="cvv">CVV</label>
+          <input
+            type="text"
+            id="cvv"
+            [(ngModel)]="payment.cvv"
+            name="cvv"
+            placeholder="123"
+            maxlength="4"
+            required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          [(ngModel)]="payment.email"
+          name="email"
+          placeholder="your@email.com"
+          required>
+      </div>
+
+      <button
+        type="button"
+        class="btn-primary"
+        [disabled]="!isFormValid()"
+        (click)="submitPayment()">
+        Complete Payment - ${{ booking.price.toFixed(2) }}
+      </button>
+    </form>
+
+    <div class="security-notice">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 1L3 3V7C3 10.5 5.5 13.5 8 15C10.5 13.5 13 10.5 13 7V3L8 1Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Your payment information is secure and encrypted</span>
+    </div>
+  </div>
+
+  <div class="confirmation-card" *ngIf="showConfirmation && booking">
+    <div class="success-icon">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="32" fill="#10B981"/>
+        <path d="M20 32L28 40L44 24" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <h1>Booking Confirmed!</h1>
+    <p class="subtitle">Your train ticket has been successfully booked</p>
+
+    <div class="confirmation-details">
+      <h3>Booking Details</h3>
+      <div class="detail-row">
+        <span>Route:</span>
+        <span>{{ booking.route }}</span>
+      </div>
+      <div class="detail-row">
+        <span>Stations:</span>
+        <span>{{ booking.from }} → {{ booking.to }}</span>
+      </div>
+      <div class="detail-row">
+        <span>Date:</span>
+        <span>{{ booking.date }}</span>
+      </div>
+      <div class="detail-row">
+        <span>Passengers:</span>
+        <span>{{ booking.passengers }}</span>
+      </div>
+      <div class="detail-row">
+        <span>Route:</span>
+        <span>{{ booking.route }}</span>
+      </div>
+      <div class="detail-row">
+        <span>Price:</span>
+        <span>₡{{ booking.price }}</span>
+      </div>
+      <div class="detail-row">
+        <span>Email:</span>
+        <span>{{ payment.email }}</span>
+      </div>
+    </div>
+
+    <div class="success-icon">
+     <qrcode [qrdata]="bookingString" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+    </div>
+
+    <p class="confirmation-message">
+      A confirmation email has been sent to <strong>{{ payment.email }}</strong>
+    </p>
+
+    <button class="btn-primary" (click)="startNewBooking()">
+      Book Another Ticket
+    </button>
+  </div>
+</div>

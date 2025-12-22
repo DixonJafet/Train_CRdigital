@@ -1,0 +1,241 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #ff8c00 0%, #ff6b35 100%);
+}
+
+.payment-card, .confirmation-card {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  padding: 3rem;
+  max-width: 600px;
+  width: 100%;
+  position: relative;
+}
+
+.back-button {
+  background: transparent;
+  border: none;
+  color: #ff8c00;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  margin-bottom: 1rem;
+  transition: all 0.2s;
+
+  &:hover {
+    color: #ff6b35;
+  }
+}
+
+h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a202c;
+}
+
+.subtitle {
+  margin: 0 0 2rem 0;
+  color: #718096;
+  font-size: 1rem;
+}
+
+.booking-summary {
+  background: #f7fafc;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+
+  h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2d3748;
+  }
+
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    color: #4a5568;
+
+    &.total {
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 2px solid #e2e8f0;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #1a202c;
+    }
+
+    .summary-value {
+      font-weight: 600;
+      color: #2d3748;
+    }
+  }
+}
+
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  label {
+    font-weight: 600;
+    color: #2d3748;
+    font-size: 0.9rem;
+  }
+
+  input {
+    padding: 0.75rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: all 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: #ff8c00;
+      box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.1);
+    }
+
+    &::placeholder {
+      color: #a0aec0;
+    }
+  }
+}
+
+.btn-primary {
+  padding: 1rem;
+  background: linear-gradient(135deg, #ff8c00 0%, #ff6b35 100%);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(255, 140, 0, 0.3);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.security-notice {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+  color: #718096;
+  font-size: 0.85rem;
+
+  svg {
+    color: #48bb78;
+  }
+}
+
+.confirmation-card {
+  text-align: center;
+
+  .success-icon {
+    margin: 0 auto 2rem;
+    display: flex;
+    justify-content: center;
+    animation: scaleIn 0.5s ease-out;
+  }
+
+  h1 {
+    color: #ff8c00;
+  }
+
+  .confirmation-details {
+    background: #f7fafc;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    text-align: left;
+
+    h3 {
+      margin: 0 0 1rem 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #2d3748;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      color: #4a5568;
+
+      span:last-child {
+        font-weight: 600;
+        color: #2d3748;
+      }
+    }
+  }
+
+  .confirmation-message {
+    color: #4a5568;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+
+    strong {
+      color: #2d3748;
+    }
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .payment-card, .confirmation-card {
+    padding: 2rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+}

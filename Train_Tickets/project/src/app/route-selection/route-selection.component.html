@@ -1,0 +1,169 @@
+<div class="container">
+  <div class="booking-card">
+    <h1>Book Your Train Ticket</h1>
+    <p class="subtitle">Select your route and travel details</p>
+
+    <form class="booking-form">
+            <div class="form-group">
+        <label>Travel Routes</label>
+        <div class="radio-group">
+          <label class="radio-label">
+            <input
+              type="radio"
+              [(ngModel)]="booking.route"
+              name="route"
+              value="SanJose-Cartago"
+              (change)="onRouteChange()">
+            <span>SanJose-Cartago</span>
+          </label>
+          <label class="radio-label">
+            <input
+              type="radio"
+              [(ngModel)]="booking.route"
+              name="route"
+              value="SanJose-Belén"
+              (change)="onRouteChange()">
+            <span>SanJose-Belén</span>
+          </label>
+          <label class="radio-label">
+            <input
+              type="radio"
+              [(ngModel)]="booking.route"
+              name="route"
+              value="SanJose-Alajuela"
+              (change)="onRouteChange()">
+            <span>SanJose-Alajuela</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="from">From</label>
+          <div class="autocomplete">
+            <input
+              id="from"
+              autocomplete="off"
+              [(ngModel)]="booking.from"
+              name="from"
+              (input)="onFromChange()"
+              (focus)="onFromChange()"
+              placeholder="Type or choose departure station"
+              required>
+            <button type="button" class="dropdown-toggle" (click)="toggleFromDropdown()">
+              ▾
+            </button>
+            <ul *ngIf="showFromSuggestions" class="suggestions">
+              <li *ngFor="let s of filteredFrom" (click)="selectFrom(s)" class="suggestion-item">{{ s }}</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="to">To</label>
+          <div class="autocomplete">
+            <input
+              id="to"
+              autocomplete="off"
+              [(ngModel)]="booking.to"
+              name="to"
+              (input)="onToChange()"
+              (focus)="onToChange()"
+              placeholder="Type or choose arrival station"
+              required>
+            <button type="button" class="dropdown-toggle" (click)="toggleToDropdown()">
+              ▾
+            </button>
+            <ul *ngIf="showToSuggestions" class="suggestions">
+              <li *ngFor="let s of filteredTo" (click)="selectTo(s)" class="suggestion-item">{{ s }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="date">Travel Date</label>
+          <input
+            type="date"
+            id="date"
+            [(ngModel)]="booking.date"
+            name="date"
+            [min]="minDate"
+            (change)="onDateChange()"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label for="passengers">Passengers</label>
+          <input
+            type="number"
+            id="passengers"
+            [(ngModel)]="booking.passengers"
+            name="passengers"
+            min="1"
+            max="10"
+            (change)="onPassengerChange()"
+            required>
+        </div>
+      </div>
+
+      <div class="form-row">
+
+        <div class="form-group">
+          <label for="departure_time">Departure Time</label>
+          <div class="autocomplete">
+            <input
+              id="departure_time"
+              autocomplete="off"
+              [(ngModel)]="booking.departure_time"
+              name="departure_time"
+              (input)="onDTimeChange()"
+              (focus)="onDTimeChange()"
+              placeholder="Type or choose Departure Time"
+              required
+              readonly>
+            <button type="button" class="dropdown-toggle" (click)="toggleDTimeDropdown()">
+              ▾
+            </button>
+            <ul *ngIf="showDTimeSuggestions" class="suggestions">
+              <li *ngFor="let t of filteredDTime" (click)="selectDTime(t)" class="suggestion-item">{{ t }}</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="arrival_time">Arrival Time</label>
+          <div class="autocomplete">
+            <input
+              id="arrival_time"
+              autocomplete="off"
+              [(ngModel)]="booking.arrival_time"
+              name="arrival_time"
+              required
+              readonly>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="info-section" *ngIf="booking.price > 0">
+        <div class="info-label">Travel time</div>
+        <div class="info-value">{{ booking.travel_time}} min.</div>
+      </div>
+
+      <div class="info-section" *ngIf="booking.price > 0">
+        <div class="info-label">Total Price</div>
+        <div class="info-value">₡{{ booking.price.toFixed(2) }}</div>
+      </div>
+
+      <button
+        type="button"
+        class="btn-primary"
+        [disabled]="!isFormValid()"
+        (click)="proceedToPayment()">
+        Continue to Payment
+      </button>
+    </form>
+  </div>
+</div>

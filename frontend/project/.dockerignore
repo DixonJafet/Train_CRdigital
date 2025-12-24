@@ -1,0 +1,31 @@
+# Dependency directories (Huge and platform-specific)
+**/node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Angular build artifacts and cache
+**/dist/
+**/.angular/
+
+# Ignore the other parts of the monorepo to keep the build context light
+backend/
+
+# Version control
+.git/
+.gitignore
+.gitattributes
+
+# Windows-specific system files
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+
+# Environment secrets (Never include these in an image)
+**/.env
+**/.env.*
+**/proxy.conf.json
+
+# Docker files
+Dockerfile
+.dockerignore
+docker-compose.yml

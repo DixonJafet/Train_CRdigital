@@ -27,11 +27,13 @@ public class DBController implements AutoCloseable{
 
         Dotenv dotenv = Dotenv.load();
         String connectionString = dotenv.get("DB_CONNECTION_STRING");
+
+       
         try {
             this.mongoClient = MongoClients.create(connectionString);
             MongoDatabase database = mongoClient.getDatabase("TrainTicketDB");
             this.my_collection = database.getCollection("Routes");
-
+            System.out.print(connectionString);
             System.out.println("✅ Spring-managed DB Connection Pool initialized.");
         } catch (MongoException e) {
             throw new IllegalStateException("Failed to connect to MongoDB at startup.", e);

@@ -6,7 +6,6 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
-import io.github.cdimascio.dotenv.Dotenv;
 import jakarta.annotation.PreDestroy;
 import org.bson.Document;
 
@@ -26,7 +25,7 @@ public class DBController implements AutoCloseable{
     DBController() {
 
 
-        Dotenv dotenv = Dotenv.load();
+
         
 
         

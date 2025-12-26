@@ -1,7 +1,6 @@
 package org.ticketApi;
 import org.springframework.boot.SpringApplication;
 
-import io.github.cdimascio.dotenv.Dotenv;
 
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or

@@ -9,6 +9,7 @@ import com.mongodb.client.model.Filters;
 import io.github.cdimascio.dotenv.Dotenv;
 import jakarta.annotation.PreDestroy;
 import org.bson.Document;
+
 import org.springframework.stereotype.Component;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -26,7 +27,12 @@ public class DBController implements AutoCloseable{
 
 
         Dotenv dotenv = Dotenv.load();
-        String connectionString = dotenv.get("DB_CONNECTION_STRING");
+        
+
+        
+        String connectionString = System.getenv("DB_CONNECTION_STRING");
+     
+        //String connectionString = dotenv.get("DB_CONNECTION_STRING");
 
        
         try {

@@ -224,11 +224,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-size: 1.5rem;
   }
 
-  .autocomplete {
-    .dropdown-toggle {
-      position: relative;
 
-    }
+
+  .dropdown-toggle {
+    
+      position: relative;
+      width: 2.7rem;
+      height: 2.7rem;
+
+
+  }
+  .autocomplete {
+
     input {
       width: 100%;
     }

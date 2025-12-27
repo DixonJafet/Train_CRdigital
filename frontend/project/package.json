@@ -2,10 +2,6 @@
   "name": "angular-starter",
   "private": true,
 
-  "engines": {
-    "node": ">=20.11.0",
-    "npm": ">=10.0.0"
-  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

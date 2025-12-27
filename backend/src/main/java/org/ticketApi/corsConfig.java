@@ -14,7 +14,8 @@ public class corsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // Apply to ALL endpoints
-                        .allowedOrigins("http://localhost:4200") // Allow this specific frontend
+                        .allowedOrigins("http://localhost:4200",
+                                		"https://melodious-alignment-production.up.railway.app") // Allow this specific frontend
                         .allowedMethods("GET", "POST", "PUT", "DELETE") // Allow these actions
                         .allowedHeaders("*"); // Allow all headers
             }

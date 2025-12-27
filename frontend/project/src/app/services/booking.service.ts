@@ -8,7 +8,7 @@ import { TicketBooking, TicketInitialInfo} from '../models/ticket.model';
 })
 export class BookingService {
   private currentBooking: TicketBooking | null = null;
-  private apiUrl = 'http://localhost:8081/api/stations';
+  private apiUrl = 'http://traincrdigital-production.up.railway.app/api/stations';
 
   constructor(private http: HttpClient) {}
 

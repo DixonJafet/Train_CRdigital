@@ -13,8 +13,8 @@ This project is focused on developing a website (mobile first design) to buy tra
 
 ---
 ## Features
--**QR Ticket info**
--Real routes based in INCOFER website.
--Real Schedules.
--Mock Payment page.
+- **QR Ticket info**
+- Real routes based in INCOFER website.
+- Real Schedules.
+- Mock Payment page.
 

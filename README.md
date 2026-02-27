@@ -22,3 +22,9 @@ This project is focused on developing a website (mobile first design) to buy tra
 - Real Schedules.
 - Mock Payment page.
 
+---
+
+## Evidence
+![pag1](image/img1.png)
+![pag2](image/img2.png)
+![pag3](image/img3.png)
